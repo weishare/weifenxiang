@@ -50,7 +50,25 @@ weixin.textMsg(function(msg) {
     switch (msg.content) {
         case "n" :
             WXMessageModel.findNew(function(err, messages){
-                console.log(messages)
+                var articles = [];
+                for (var i = 0; i < messages.length; i++) {
+                    articles[i] = {
+                        title : i,
+                        description : "最新暴照",
+                        picUrl : messages[i].picUrl,
+                        url : "http://weishare.github.io"
+                    };
+                };
+
+                resMsg = {
+                    fromUserName : msg.toUserName,
+                    toUserName : msg.fromUserName,
+                    msgType : "news",
+                    articles : articles,
+                    funcFlag : 0
+                }
+
+                 weixin.sendMsg(resMsg);
             })
         break;
         case "q":
@@ -58,7 +76,7 @@ weixin.textMsg(function(msg) {
             WXMessageEntity.findSelf(function(err, messages){
                 console.log(messages)
             })
-            
+
         break;
     }
 });
