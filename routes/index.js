@@ -19,7 +19,7 @@ var WXMessageSchema = mongoose.Schema({
         fromUserName: String,
         createTime: Date,
         picUrl: String,
-        msgId: Objectid,
+        msgId: Schema.Types.ObjectId,
         content: String
     });
 
