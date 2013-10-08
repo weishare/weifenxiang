@@ -17,11 +17,20 @@ db.once('open',function(){
 var WXMessageSchema = mongoose.Schema({
         toUserName: String,
         fromUserName: String,
-        createTime: Date,
+        createTime: Number,
         picUrl: String,
         msgId: String,
         content: String
     });
+
+
+WXMessageSchema.methods.findSelf = function(cb){
+    this.model('message').find({fromUserName:this.fromUserName},cb).limit(10);
+}
+
+WXMessageSchema.statics.findNew = function(cb){
+    this.find().limit(10).exec(cb);
+}
 
 
 var WXMessageModel = mongoose.model("message", WXMessageSchema);
@@ -35,14 +44,23 @@ weixin.token = 'honghong';
 weixin.textMsg(function(msg) {
     console.log("textMsg received");
     console.log(JSON.stringify(msg));
+    var resMsg = {};
 
 
-    var WXMessageEntity = new WXMessageModel(msg);
-
-    WXMessageEntity.save(function (err) {
-        if (err) console.log(err)
-        console.log('save success');
-    });
+    switch (msg.content) {
+        case "n" :
+            WXMessageModel.findNew(function(err, messages){
+                console.log(messages)
+            })
+        break;
+        case "q":
+            var WXMessageEntity = new WXMessageModel(msg);
+            WXMessageEntity.findSelf(function(err, messages){
+                console.log(messages)
+            })
+            
+        break;
+    }
 });
 
 
@@ -52,7 +70,10 @@ weixin.imageMsg(function(msg) {
     console.log("imageMsg received");
     console.log(JSON.stringify(msg));
     var WXMessageEntity = new WXMessageModel(msg);
-    WXMessageEntity.save();
+    WXMessageEntity.save(function (err) {
+        if (err) console.log(err)
+        console.log('save success');
+    });
 });
 
 // 监听位置消息
