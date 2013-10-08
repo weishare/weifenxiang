@@ -4,15 +4,53 @@
  */
 
 var weixin = require('weixin-api');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/WXMessage');
+
+
+db.on('error',console.error.bind(console,'连接错误:'));
+db.once('open',function(){
+    console.log('open WXMessage');
+});
+
+
+var WXMessageSchema = mongoose.Schema({
+        toUserName: String,
+        fromUserName: String,
+        createTime: Date,
+        picUrl: String,
+        msgId: Objectid,
+        content: String
+    });
+
+
+var WXMessageModel = mongoose.model("message", WXMessageSchema);
+
 
 // config
 weixin.token = 'honghong';
+
+
+
+weixin.textMsg(function(msg) {
+    console.log("textMsg received");
+    console.log(JSON.stringify(msg));
+
+
+    var WXMessageEntity = new WXMessageModel(msg);
+
+    WXMessageEntity.save();
+});
+
 
 
 // 监听图片消息
 weixin.imageMsg(function(msg) {
     console.log("imageMsg received");
     console.log(JSON.stringify(msg));
+    var WXMessageEntity = new WXMessageModel(msg);
+    WXMessageEntity.save();
 });
 
 // 监听位置消息
