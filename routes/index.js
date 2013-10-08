@@ -39,7 +39,10 @@ weixin.textMsg(function(msg) {
 
     var WXMessageEntity = new WXMessageModel(msg);
 
-    WXMessageEntity.save();
+    WXMessageEntity.save(function (err) {
+        if (err) console.log(err)
+        console.log('save success');
+    });
 });
 
 
