@@ -56,7 +56,7 @@ weixin.textMsg(function(msg) {
                         title : i,
                         description : "最新暴照",
                         picUrl : messages[i].picUrl,
-                        url : "http://weishare.github.io"
+                        url : messages[i].picUrl
                     };
                 };
 
@@ -74,7 +74,25 @@ weixin.textMsg(function(msg) {
         case "q":
             var WXMessageEntity = new WXMessageModel(msg);
             WXMessageEntity.findSelf(function(err, messages){
-                console.log(messages)
+                var articles = [];
+                for (var i = 0; i < messages.length; i++) {
+                    articles[i] = {
+                        title : i,
+                        description : "最新暴照",
+                        picUrl : messages[i].picUrl,
+                        url : messages[i].picUrl
+                    };
+                };
+
+                resMsg = {
+                    fromUserName : msg.toUserName,
+                    toUserName : msg.fromUserName,
+                    msgType : "news",
+                    articles : articles,
+                    funcFlag : 0
+                }
+
+                 weixin.sendMsg(resMsg);
             })
 
         break;
