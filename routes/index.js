@@ -25,11 +25,11 @@ var WXMessageSchema = mongoose.Schema({
 
 
 WXMessageSchema.methods.findSelf = function(cb){
-    this.model('message').find({fromUserName:this.fromUserName},cb).limit(10);
+    this.model('message').find({fromUserName:this.fromUserName},cb).limit(10).desc('_id');
 }
 
 WXMessageSchema.statics.findNew = function(cb){
-    this.find().limit(10).exec(cb);
+    this.find().limit(10).desc('_id').exec(cb);
 }
 
 
