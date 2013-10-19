@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>微分享</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		function onResize (img) {
+			var rect = img.parentNode.getBoundingClientRect();
+			img.style.top = -(img.height - rect.height)/2 + 'px';
+		}
+
+		$(document).ready(function() {
+            $('.ui-inner').on('click', '.ui-more', function(){
+                var _this = this;
+                var _id = $(this).attr("data-lastid");
+                $.post('/morelatest', {_id : _id}, function(result){
+                    $(_this).remove();
+                    $('.ui-inner').append(result);
+                    console.log(document.cookie)
+                });
+            })
+		})
+	</script>
+</head>
+
+  <body>
+    <div class="ui-inner">
+    	<% include messages.ejs %>
+    </div>
+  </body>
+</html>

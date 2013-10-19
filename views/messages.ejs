@@ -1,0 +1,33 @@
+<% if (messages.length) { %>
+    <% messages.forEach(function(message, index){ %>
+        <% if (index == 0  && first == true) { %>
+            <li>
+                <a href="/messages/<%= message._id %>" target="_blank">
+                    <div class="ui-header">
+                        <img src="<%= message.picUrl %>" onload="onResize(this)">
+                        <label><%= message.title %></label>
+                    </div>
+                </a>
+            </li>
+
+        <%} else { %>
+            <li>
+                <a href="/messages/<%= message._id %>" target="_blank">
+                    <div class="ui-list">
+                        <img src="<%= message.picUrl %>">
+                        <label><%= message.title %></label>
+                    </div>
+                </a>
+            </li>
+        <% } %>
+    <% }) %>
+
+    <% if (messages.length >= 20) { %>
+        <li class="ui-more" data-lastid="<%= messages[messages.length-1]._id %>">
+            <div class="ui-list">
+                <img src="/images/icon_arrow_more.png">
+                <label>更多</label>
+            </div>
+        </li>
+    <% } %>
+<% } %>
