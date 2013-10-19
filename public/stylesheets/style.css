@@ -1,8 +1,97 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0 0;
+  padding: 0 0;
+  font: 1.0em "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #495C6A;
+  background-color: #EFF3F7;
 }
 
 a {
   color: #00B7FF;
 }
+
+div.ui-inner{
+	margin: 1em auto;
+	width: 92%;
+	min-height: 450px;
+	background-color: #FFF;
+	border-radius: 0.5em;
+	box-shadow: 0 0 0.5em #111;
+	list-style: none;
+}
+
+
+
+
+div.ui-inner li{
+	border-top: 1px solid #989EAD;
+	height: 6em;
+	padding: 1em 1em;
+}
+
+div.ui-inner li:first-child{
+	border-top: none;
+	height: 10em;
+}
+
+div.ui-more label{
+	line-height: 3em;
+	font-size: 2em;
+}
+
+
+div.ui-header, div.ui-list{
+	margin: 0 0;
+	height: 100%;
+	text-align:center;
+	position: relative;
+	overflow: hidden;
+}
+
+div.ui-header img{
+	position:absolute;
+	vertical-align:middle;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+
+
+div.ui-header label{
+	position:absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2em;
+	line-height: 2em;
+	color: #FFF;
+	white-space: nowrap;
+	text-overflow:ellipsis;
+	background-color: rgba(0,0,0,0.4);
+	text-align: left;
+	display: block;
+	overflow: hidden;
+}
+
+
+div.ui-list img{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 6em;
+	height: 6em;
+}
+
+
+div.ui-list label{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 7em;
+	line-height: 1.5em;
+	color :#5D6265;
+	text-align: left;
+	overflow: hidden;
+}
+

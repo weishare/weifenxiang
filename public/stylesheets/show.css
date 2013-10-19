@@ -1,0 +1,86 @@
+body {
+  margin: 0 0;
+  padding: 1em 1em;
+  font: 1.0em "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #495C6A;
+  background-color: #EFF3F7;
+}
+
+a {
+  color: #00B7FF;
+}
+
+a[disabled]{
+    color: #ccc;
+}
+
+.ui-button{        
+    display: inline-block;
+    white-space: nowrap;
+    background-color: #ccc;
+    background-image: -webkit-linear-gradient(top, #eee, #ccc);
+    border: 1px solid #777;
+    padding: 0 1.5em;
+    margin: 0.5em;
+    font: bold 1em/2em Arial, Helvetica;
+    text-decoration: none;
+    color: #495C6A;
+    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    border-radius: .2em;
+    box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+.ui-button:not([disabled]):hover{
+    background-color: #ddd;        
+    background-image: -webkit-linear-gradient(top, #fafafa, #ddd);    
+}
+
+.ui-button:not([disabled]):active{
+
+    -webkit-box-shadow: 0 0 4px 2px rgba(0,0,0,.3) inset;
+    position: relative;
+    top: 1px;
+}
+
+.ui-button:not([disabled]):focus{
+    outline: 0;
+    background: #fafafa;
+}    
+
+.ui-button:before{
+    background: #ccc;
+    background: rgba(0,0,0,.1);
+    float: left;        
+    width: 1em;
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0 1em 0 -1em;
+    padding: 0 .2em;
+    -webkit-box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+    -webkit-border-radius: .15em 0 0 .15em;
+    border-radius: .15em 0 0 .15em;
+    pointer-events: none;        
+}
+
+.like:before {
+    content: "\2764";
+}
+.fuck:before {
+    content: "f";
+}
+
+.ui-title{
+    width: 100%;
+    word-break: normal;
+    word-wrap: break-word;
+    display: block;
+}
+
+.ui-content{
+    margin: 18px 0 0;
+    padding-bottom: 18px;
+}
+
+.ui-pic img{
+    width: 100%;
+}
